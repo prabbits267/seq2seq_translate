@@ -17,4 +17,3 @@ class DecoderRNN(nn.Module):
         )
         self.out = nn.Linear(hidden_size, vocab_size)
         self.softmax = nn.LogSoftmax(dim=2)
-
