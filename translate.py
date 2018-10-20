@@ -49,11 +49,9 @@ class Translate():
         self.encoder_optimizer.zero_grad()
         self.decoder_optimizer.zero_grad()
 
-        encoder_hidden = self.encoder.init_hidden()
-
         target_length = target_tensor.size(0)
 
-        encoder_output, encoder_hidden = self.encoder(input_tensor, encoder_hidden)
+        encoder_output, encoder_hidden = self.encoder(input_tensor)
 
         decoder_hidden = encoder_hidden
 
@@ -76,9 +74,10 @@ trans = Translate()
 target_tensor = trans.convert2ind("J'ai compris.")
 input_tensor = trans.convert2ind("I get it.")
 
-trans.train(input_tensor, target_tensor)
+input, _ = trans.encoder(input_tensor)
+output = trans.decoder(target_tensor,_)
 
-
+print(output)
 
 
 
