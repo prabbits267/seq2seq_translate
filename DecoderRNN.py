@@ -12,7 +12,7 @@ class DecoderRNN(nn.Module):
         self.num_layers = 1
 
         self.embedding = nn.Embedding(output_size, hidden_size)
-        self.gru = nn.LSTM(input_size=hidden_size, hidden_size=hidden_size, batch_first=True)
+        self.lstm = nn.LSTM(input_size=hidden_size, hidden_size=hidden_size, batch_first=True)
         self.out = nn.Linear(hidden_size, output_size)
         self.softmax = nn.LogSoftmax(dim=1)
 
@@ -20,9 +20,9 @@ class DecoderRNN(nn.Module):
 
     def forward(self, input, hidden):
         embedding = self.embedding(input)
-        out, hidden = self.gru(embedding, hidden)
+        out, (hidden_state, cell_state) = self.lstm(embedding, hidden)
         out = self.softmax(self.out(out))
-        return out, hidden
+        return out, (hidden_state, cell_state)
 
     def init_hidden(self):
         hidden_state = Variable(torch.zeros(self.num_layers, 1, self.hidden_size).to(self.device))
