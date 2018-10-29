@@ -81,7 +81,7 @@ class Translate():
             decoder_input = torch.max(decoder_output, 1)[1].unsqueeze(0)
             target = target_tensor[i].unsqueeze(0)
             loss += self.loss_function(decoder_output, target)
-            decoder_outputs.append(decoder_input)
+            decoder_outputs.append(decoder_input.cpu().numpy()[0][0])
 
         loss.backward()
         torch.nn.utils.clip_grad_norm(self.encoder.parameters(), clip)
@@ -97,6 +97,8 @@ class Translate():
             for i, (x_data, y_data) in enumerate(self.data_loader):
                 loss, result = self.step(x_data, y_data)
             print(loss)
+            _, x = self.step(['Get down.'], ['Lâche-toi !'])
+            print(x, ' ', self.convert2ind('Lâche-toi !'))
 
 
 
