@@ -4,8 +4,8 @@ class PrepareData():
         self.lang_1, self.lang_2, self.tokens = self.read_data()
         self.char2index = {}
         self.index2char = {}
-        self.char2index['SOS'] = 0
-        self.index2char[0] = 'SOS'
+        self.char2index['_'] = 0
+        self.index2char[0] = '_'
         self.char2index = {w:i for i, w in enumerate(self.tokens)}
         self.index2char = {w[1]:w[0] for w in self.char2index.items()}
 

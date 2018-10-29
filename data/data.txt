@@ -17,4 +17,4 @@ Show me.	Montrez-moi !
 Shut up!	Taisez-vous!
 Who won?	Qui l'a emporté ?
 You run.	Tu cours.
-Find Tom.	Trouve Tom.
+Find Tom.	Trouve Tom. _

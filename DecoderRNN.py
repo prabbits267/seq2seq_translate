@@ -14,7 +14,7 @@ class DecoderRNN(nn.Module):
         self.embedding = nn.Embedding(output_size, hidden_size)
         self.lstm = nn.LSTM(input_size=hidden_size, hidden_size=hidden_size, batch_first=True)
         self.out = nn.Linear(hidden_size, output_size)
-        self.softmax = nn.LogSoftmax(dim=1)
+        self.softmax = nn.LogSoftmax(dim=2)
 
         self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
