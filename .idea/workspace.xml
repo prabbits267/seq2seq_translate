@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="835ef139-974d-463f-b3cd-4e9eee9f6c60" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/seq2seq_translate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/seq2seq_translate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DecoderRNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/DecoderRNN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EncoderRNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/EncoderRNN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrepareData.py" beforeDir="false" afterPath="$PROJECT_DIR$/PrepareData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translate.py" beforeDir="false" afterPath="$PROJECT_DIR$/translate.py" afterDir="false" />
-    </list>
+    <list default="true" id="835ef139-974d-463f-b3cd-4e9eee9f6c60" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,8 +125,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/translate.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="644">
-                  <caret line="94" column="12" selection-start-line="94" selection-start-column="12" selection-end-line="96" selection-end-column="23" />
+                <state relative-caret-position="536">
+                  <caret line="95" column="40" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="40" />
                   <folding>
                     <element signature="e#0#12#0" expanded="true" />
                     <marker date="1540806974639" expanded="true" signature="1924:3489" ph="..." />
@@ -181,7 +172,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/../seq2seq/seq2seq.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="392">
+                <state relative-caret-position="96">
                   <caret line="212" column="15" selection-start-line="212" selection-start-column="12" selection-end-line="212" selection-end-column="15" />
                   <folding>
                     <element signature="e#5016#5404#0" />
@@ -465,7 +456,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3296582" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.64016736" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.20502092" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50054586" side_tool="true" weight="0.42154813" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.36610878" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -702,7 +693,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../seq2seq/seq2seq.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
+        <state relative-caret-position="96">
           <caret line="212" column="15" selection-start-line="212" selection-start-column="12" selection-end-line="212" selection-end-column="15" />
           <folding>
             <element signature="e#5016#5404#0" />
@@ -717,8 +708,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/translate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="94" column="12" selection-start-line="94" selection-start-column="12" selection-end-line="96" selection-end-column="23" />
+        <state relative-caret-position="536">
+          <caret line="95" column="40" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="40" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
             <marker date="1540806974639" expanded="true" signature="1924:3489" ph="..." />
