@@ -54,8 +54,10 @@ class Translate():
 
     # train on single sentence -- return loss + decoder_outputs
     def step(self, input_sent, target_tensor):
-        input_tensor = self.convert2ind(input_sent)
-        target_tensor = self.convert2ind(target_tensor)
+
+
+        input_tensor = self.convert2ind(list(input_sent[0]))
+        target_tensor = self.convert2ind(list(target_tensor[0]))
         target_tensor = target_tensor.squeeze(0)
         clip = 5.0
         loss = 0
@@ -88,7 +90,7 @@ class Translate():
         self.decoder_optimizer.step()
         self.encoder_optimizer.step()
 
-        return loss.items(), decoder_outputs
+        return loss.data[0], decoder_outputs
 
     def train(self):
         for i in range(self.num_epoch):
@@ -99,7 +101,7 @@ class Translate():
 
 
 trans = Translate()
-trans.step('CoEn in.', 'Entre.')
+trans.train()
 
 
 
