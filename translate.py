@@ -1,3 +1,5 @@
+import random
+
 import torch
 from torch import nn
 from torch.autograd import Variable
@@ -6,6 +8,8 @@ from torch.utils.data import DataLoader
 from DecoderRNN import DecoderRNN
 from EncoderRNN import EncoderRNN
 from PrepareData import *
+from attn import Attn
+from attn_decoder import AttnDecoder
 from seq2seq_dataset import Seq2SeqDataset
 
 data = PrepareData()
@@ -30,11 +34,13 @@ class Translate():
         self.output_size = 100
         self.learning_rate = 0.01
         self.num_epoch = 500
+        self.teacher_forcing = True
         self.use_cuda = torch.cuda.is_available()
         self.device = 'cuda:0' if self.use_cuda else 'cpu'
 
         self.encoder = EncoderRNN(input_size=self.input_size, hidden_size=self.hidden_size)
         self.decoder = DecoderRNN(output_size=self.output_size, hidden_size=self.hidden_size)
+        self.attn_decoder = AttnDecoder(self.hidden_size, self.output_size)
 
         if use_cuda:
             self.encoder = self.encoder.to(self.device)
@@ -55,7 +61,6 @@ class Translate():
     # train on single sentence -- return loss + decoder_outputs
     def step(self, input_sent, target_tensor):
 
-
         input_tensor = self.convert2ind(list(input_sent[0]))
         target_tensor = self.convert2ind(list(target_tensor[0]))
         target_tensor = target_tensor.squeeze(0)
@@ -65,7 +70,6 @@ class Translate():
         self.encoder_optimizer.zero_grad()
         self.decoder_optimizer.zero_grad()
 
-        input_length = input_tensor.size()[1]
         target_length = target_tensor.size()[0]
 
         encoder_hidden = self.encoder(input_tensor)
@@ -75,13 +79,15 @@ class Translate():
 
         decoder_outputs = []
 
+        # scheduled sampling
         for i in range(target_length):
             decoder_output, decoder_hidden = self.decoder(decoder_input, decoder_hidden)
             decoder_output = decoder_output.squeeze(0)
-            decoder_input = torch.max(decoder_output, 1)[1].unsqueeze(0)
+            model_output = torch.max(decoder_output, 1)[1].unsqueeze(0)
+            decoder_input = model_output if random.random() > 0.5 else target_tensor[i].unsqueeze(0).unsqueeze(0)
             target = target_tensor[i].unsqueeze(0)
             loss += self.loss_function(decoder_output, target)
-            decoder_outputs.append(decoder_input.cpu().numpy()[0][0])
+            decoder_outputs.append(model_output.cpu().numpy()[0][0])
 
         loss.backward()
         torch.nn.utils.clip_grad_norm(self.encoder.parameters(), clip)
@@ -93,17 +99,25 @@ class Translate():
         return loss.data[0], decoder_outputs
 
     def train(self):
-        for i in range(self.num_epoch):
+        for j in range(self.num_epoch):
             for i, (x_data, y_data) in enumerate(self.data_loader):
                 loss, result = self.step(x_data, y_data)
-            print(loss)
-            _, x = self.step(['Get down.'], ['Lâche-toi !'])
-            print(x, ' ', self.convert2ind('Lâche-toi !'))
+            _, x = self.step(['Be fair.'], ['Sois équitable !'])
+
+            print('Epoch' , j)
+            print(x)
+            print('-------> ', self.convert2ind('Sois équitable !').cpu().numpy()[0])
 
 
 
 trans = Translate()
-trans.train()
+encoder_input = trans.convert2ind('Lâche')
+encoder_output, (hidden_state, cell_state) = trans.encoder(encoder_input)
+
+attn = Attn('general', trans.hidden_size)
+energy = attn(hidden_state, encoder_output)
+print(energy)
+print(energy.size())
 
 
 

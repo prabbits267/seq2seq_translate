@@ -22,7 +22,7 @@ class EncoderRNN(nn.Module):
     def forward(self, input):
         embedded = self.embedding(input)
         output, (hidden_state, cell_state) = self.lstm(embedded, self.init_hidden())
-        return hidden_state, cell_state
+        return output, (hidden_state, cell_state)
 
     def init_hidden(self):
         hidden_state = Variable(torch.zeros(self.n_layers, 1, self.hidden_size).to(self.device))
