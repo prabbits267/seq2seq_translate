@@ -43,8 +43,3 @@ class Attn(nn.Module):
             energy = self.attn(torch.cat((hidden[0], encoder_output), 0))
             energy = self.v.dot(energy)
             return energy
-
-
-
-
-
